@@ -96,4 +96,4 @@ def create_celular():
     return jsonify({'id': new_id, 'message': 'Celular Criado com sucesso!'}), 201
 
 
-app.run(debug=True, host='0.0.0.0', port=8000)
+app.run(debug=False, host='0.0.0.0', port=8000)
