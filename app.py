@@ -94,6 +94,8 @@ def create_celular():
     conn.close()
     
     return jsonify({'id': new_id, 'message': 'Celular Criado com sucesso!'}), 201
+import os
 
-
-app.run(debug=False, host='0.0.0.0', port=8000)
+if __name__ == "__main__":
+    # Apenas para testes locais
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 8000)))
