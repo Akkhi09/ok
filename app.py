@@ -64,11 +64,11 @@ def index():
     html = '''<h2>Lista de Celulares disponiveis</h2>
                 <ul>
                     {% for c in celulares %}
-                        <li><strong>{{ c["heroi"] }}</strong> 
-                        — Poder: {{ c["poder"] }}</li>
+                        <li><strong>{{ c["marca"] }}</strong> 
+                        —{{ c["modelo"] }}</li>
                     {% endfor %}
                 </ul>'''
-    return render_template_string(html)
+    return render_template_string(html, celulares=celulares)
 
 @app.route('/celulares', methods=['GET'])
 def listar_celulares():
