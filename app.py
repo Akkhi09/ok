@@ -111,7 +111,7 @@ def obter_celular(id):
 def por_marca(marca):
     conn = connect()
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Celulares WHERE marca=?', (marca,))
+    cursor.execute('SELECT * FROM Celulares WHERE LOWER(marca) = LOWER(?)', (marca,))
     celulares = cursor.fetchall()
     conn.close()
     if celulares:   
