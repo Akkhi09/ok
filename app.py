@@ -70,7 +70,7 @@ def index():
                 </ul>'''
     return render_template_string(html, celulares=celulares)
 
-@app.route('/celulares', methods=['GET'])
+@app.route('/celulares/', methods=['GET'])
 def listar_celulares():
     conn= connect()
     cursor = conn.cursor()
@@ -81,7 +81,7 @@ def listar_celulares():
         return jsonify([dict(c) for c in celulares]), 200
     return jsonify({"message": "Nenhum celular encontrado"}), 404
 
-@app.route('/celulares', methods = ['POST'])
+@app.route('/celulares/', methods = ['POST'])
 def create_celular():
     dados = request.json
     conn = connect()
@@ -95,7 +95,7 @@ def create_celular():
     
     return jsonify({'id': new_id, 'message': 'Celular Criado com sucesso!'}), 201
 
-@app.route('/celulares/<int:id>', methods = ['GET'])
+@app.route('/celulares/<int:id>/', methods = ['GET'])
 def obter_celular(id):
     conn = connect()
     cursor = conn.cursor()
@@ -107,7 +107,7 @@ def obter_celular(id):
     else:
         return jsonify({"Erro":"não há celulares "}), 404
 
-@app.route('/celulares/<string:marca>', methods =['GET'])
+@app.route('/celulares/<string:marca>/', methods =['GET'])
 def por_marca(marca):
     conn = connect()
     cursor = conn.cursor()
@@ -119,7 +119,7 @@ def por_marca(marca):
     else:
         return jsonify({"Erro":"não há celulares dessa marca disponic«vel na API"}), 404
 
-@app.route('/celulares/so/<so>')
+@app.route('/celulares/so/<so>/')
 def get_por_so(so):
     conn = connect()
     cursor = conn.cursor()
