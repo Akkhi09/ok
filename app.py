@@ -119,6 +119,14 @@ def por_marca(marca):
     else:
         return jsonify({"Erro":"não há celulares dessa marca disponic«vel na API"}), 404
 
+@app.route('/celulares/so/<so>')
+def get_por_so(so):
+    conn = connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Celulares WHERE LOWER(so) LIKE LOWER(?)", (f"%{so}%",))
+    resultado = cursor.fetchall()
+    return jsonify([dict(r) for r in resultado])
+
 import os
 
 if __name__ == "__main__":
