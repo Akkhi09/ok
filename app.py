@@ -125,7 +125,10 @@ def get_por_so(so):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Celulares WHERE LOWER(so) LIKE LOWER(?)", (f"%{so}%",))
     resultado = cursor.fetchall()
-    return jsonify([dict(r) for r in resultado])
+    if resultado:
+        return jsonify([dict(r) for r in resultado])
+    else:
+        return jsonify({'message': 'Nenhum Celular com esse Sistema Operacional encontrado.'}), 404
 
 import os
 
