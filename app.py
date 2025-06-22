@@ -94,6 +94,31 @@ def create_celular():
     conn.close()
     
     return jsonify({'id': new_id, 'message': 'Celular Criado com sucesso!'}), 201
+
+@app.route('/celulares/<int:id>', methods = ['GET'])
+def obter_celular(id):
+    conn = connect()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Celulares WHERE id=?', (id,))
+    celulares = cursor.fetchall()
+    conn.close()
+    if celulares:
+        return jsonify([dict(c) for c in celulares]), 200
+    else:
+        return jsonify({"Erro":"não há celulares "}), 404
+
+@app.route('/celulares/<string:marca>', methods =['GET'])
+def por_marca(marca):
+    conn = connect()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Celulares WHERE marca=?', (marca,))
+    celulares = cursor.fetchall()
+    conn.close()
+    if celulares:   
+        return jsonify([dict(c) for c in celulares])
+    else:
+        return jsonify({"Erro":"não há celulares dessa marca disponic«vel na API"}), 404
+
 import os
 
 if __name__ == "__main__":
