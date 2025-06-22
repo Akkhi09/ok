@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, render_template_string
 import sqlite3 as sql
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app) 
 def connect():
     conn = sql.connect('database.db')
     conn.row_factory = sql.Row # Retornar resultados como dicionário.
