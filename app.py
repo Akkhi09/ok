@@ -107,7 +107,7 @@ def obter_celular(id):
     else:
         return jsonify({"Erro":"não há celulares "}), 404
 
-@app.route('/celulares/<string:marca>/', methods =['GET'])
+@app.route('/celulares/marca/<string:marca>/', methods =['GET'])
 def por_marca(marca):
     conn = connect()
     cursor = conn.cursor()
