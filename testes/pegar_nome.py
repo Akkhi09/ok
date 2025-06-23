@@ -1,6 +1,6 @@
 import requests
 
-url ='http://127.0.0.1:8000/celulares'
+url ='http://127.0.0.1:8000/celulares/Samsung'
 
 def pegar_celular(modelo):
     n = 0
@@ -9,10 +9,14 @@ def pegar_celular(modelo):
     if res.status_code == 200:
         for c in celulares:
         # print(c['modelo'])
-            if modelo in c['modelo']:
+            if modelo.lower() in c['modelo'].lower():
                 print(c['modelo'])
+                res.content
                 n+=1
-        print(f"A API fornece {n} celulares desse modelo")
+        print(f"A API fornece {n} celulares desse modelo: {modelo.lower()}.")
     else:
         print("Erro: ", res.status_code, res.text)
-pegar_celular("Galaxy")
+#pegar_celular("Redmi")
+res = requests.get(url)
+for e in res.json():
+    print(e['modelo'])

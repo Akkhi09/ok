@@ -1,0 +1,5 @@
+/celulares/so/Android
+
+/celulares/ram/8 GB
+
+/celulares/modelo/Galaxy S23 Ultra
